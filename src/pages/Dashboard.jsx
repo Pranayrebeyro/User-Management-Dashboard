@@ -96,52 +96,45 @@ setUsers(expandedUsers);
   // ===========================
 
   const handleAddOrUpdateUser = async (userData) => {
-    try {
-
-      if (selectedUser) {
-
+  try {
+    if (selectedUser) {
+      // Try the API, but don't fail if it doesn't work
+      try {
         await updateUser(selectedUser.id, userData);
-
-        setUsers((prevUsers) =>
-          prevUsers.map((user) =>
-            user.id === selectedUser.id
-              ? {
-                  ...userData,
-                  id: selectedUser.id,
-                }
-              : user
-          )
-        );
-
-      } else {
-
-        const response = await addUser(userData);
-
-        const newUser = {
-          ...response.data,
-          id: users.length + 1,
-        };
-
-        setUsers((prevUsers) => [
-          ...prevUsers,
-          newUser,
-        ]);
-
+      } catch (err) {
+        console.warn("Mock API update failed, updating local state instead.");
       }
 
-      setSelectedUser(null);
+      // Always update local state
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === selectedUser.id
+            ? { ...userData, id: selectedUser.id }
+            : user
+        )
+      );
+    } else {
+      try {
+        await addUser(userData);
+      } catch (err) {
+        console.warn("Mock API add failed, adding locally instead.");
+      }
 
-      setIsFormOpen(false);
+      const newUser = {
+        ...userData,
+        id: Math.max(...users.map((u) => u.id)) + 1,
+      };
 
-    } catch (error) {
-
-      console.error(error);
-
-      alert("Unable to save user.");
-
+      setUsers((prevUsers) => [...prevUsers, newUser]);
     }
-  };
 
+    setSelectedUser(null);
+    setIsFormOpen(false);
+  } catch (error) {
+    console.error(error);
+    alert("Unable to save user.");
+  }
+};
 
   // ===========================
   // Delete User
