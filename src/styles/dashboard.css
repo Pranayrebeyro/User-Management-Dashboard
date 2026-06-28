@@ -1,0 +1,312 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+}
+
+/* Dashboard */
+
+.dashboard {
+  width: 95%;
+  max-width: 1400px;
+  margin: 30px auto;
+}
+
+/* Navbar */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.navbar-title h1 {
+  font-size: 30px;
+  color: #222;
+}
+
+.navbar-title p {
+  color: gray;
+  margin-top: 6px;
+}
+
+.add-user-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.add-user-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Search */
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+}
+
+/* Table */
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-table th {
+  background: #2563eb;
+  color: white;
+  padding: 15px;
+}
+
+.user-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.user-table tr:hover {
+  background: #f1f5ff;
+}
+
+/* Buttons */
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 3px;
+}
+
+.edit-btn {
+  background: orange;
+  color: white;
+}
+
+.delete-btn {
+  background: crimson;
+  color: white;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.pagination button {
+  padding: 8px 18px;
+  cursor: pointer;
+}
+
+.pagination select {
+  padding: 8px;
+}
+
+/* Modal */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-form,
+.filter-popup {
+  background: white;
+  width: 420px;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.user-form h2,
+.filter-popup h2 {
+  margin-bottom: 20px;
+}
+
+.user-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-form input,
+.user-form select,
+.filter-popup input,
+.filter-popup select {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Loader */
+
+.loader-container {
+  text-align: center;
+  padding: 40px;
+  font-size: 20px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.user-table{
+    font-size:14px;
+}
+
+.user-table th,
+.user-table td{
+    padding:10px;
+}
+
+.pagination{
+    flex-direction:column;
+}
+
+.user-form,
+.filter-popup{
+    width:95%;
+}
+
+}
+
+.loader-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:250px;
+}
+
+.loader{
+    width:45px;
+    height:45px;
+    border:5px solid #ddd;
+    border-top:5px solid #2563eb;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin-bottom:15px;
+}
+
+@keyframes spin{
+
+0%{
+transform:rotate(0deg);
+}
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+.no-data{
+    text-align:center;
+    padding:30px;
+    color:gray;
+}
+
+.page-numbers{
+    display:flex;
+    gap:8px;
+}
+
+.page-numbers button{
+    padding:8px 12px;
+    border:none;
+    cursor:pointer;
+    background:#eee;
+    border-radius:6px;
+}
+
+.active-page{
+    background:#2563eb !important;
+    color:white;
+}
+
+.rows-selector{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.rows-selector select{
+    padding:8px;
+}
+
+.pagination button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.pagination select,
+.rows-selector select,
+select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
